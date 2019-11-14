@@ -86,32 +86,28 @@ public class EnemyAI : MonoBehaviour
 
             SearchMinDistanceCharacter();
 
-            dist = Vector2.Distance(targetCharacter.transform.position, _enemyTrans.position);
-
-            //공격 사정거리 이내인 경우
-            if (dist <= attackDist)
-            { 
-                action = EnemyAction.Attack;
-            }
-            else if (dist <= traceDist)
+            if (targetCharacter != null)
             {
-                action = EnemyAction.Trace;
-            }
-            else
-            {
-                //순찰과 대기를 확률적으로 선택합니다
-                int ran = Random.Range(0, 100);
+                dist = Vector2.Distance(targetCharacter.transform.position, _enemyTrans.position);
 
-                if (ran > 50)
+                //공격 사정거리 이내인 경우
+                if (dist <= attackDist)
                 {
-                    action = EnemyAction.Patrol;
+                    action = EnemyAction.Attack;
+                }
+                else if (dist <= traceDist)
+                {
+                    action = EnemyAction.Trace;
                 }
                 else
                 {
                     action = EnemyAction.Patrol;
                 }
             }
-
+            else
+            {
+                action = EnemyAction.Idle;
+            }
 
             yield return new WaitForSeconds(0.3f);
         }

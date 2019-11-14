@@ -16743,8 +16743,8 @@ Camera:
   m_GameObject: {fileID: 798100956}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -30166,16 +30166,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1014126752}
     m_Modifications:
-    - target: {fileID: 2754568562775878186, guid: 6d60b1803e9254c4bb62ca0065447733,
-        type: 3}
-      propertyPath: parent
-      value: 
-      objectReference: {fileID: 1932899100}
-    - target: {fileID: 2754568562775878186, guid: 6d60b1803e9254c4bb62ca0065447733,
-        type: 3}
-      propertyPath: Character
-      value: 
-      objectReference: {fileID: 1014126746}
     - target: {fileID: 3124854192324177719, guid: 6d60b1803e9254c4bb62ca0065447733,
         type: 3}
       propertyPath: m_Name
@@ -30236,6 +30226,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2754568562775878186, guid: 6d60b1803e9254c4bb62ca0065447733,
+        type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 1932899100}
+    - target: {fileID: 2754568562775878186, guid: 6d60b1803e9254c4bb62ca0065447733,
+        type: 3}
+      propertyPath: Character
+      value: 
+      objectReference: {fileID: 1014126746}
     - target: {fileID: 3124854192324177715, guid: 6d60b1803e9254c4bb62ca0065447733,
         type: 3}
       propertyPath: m_Mesh
