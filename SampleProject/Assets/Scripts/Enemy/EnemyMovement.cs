@@ -174,4 +174,6 @@ public class EnemyMovement : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         enemyAttackRect.SetActive(false);
     }
+    
+    
 }

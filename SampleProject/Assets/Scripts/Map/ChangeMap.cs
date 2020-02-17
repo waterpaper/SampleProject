@@ -50,6 +50,7 @@ public class ChangeMap : MonoBehaviour
         stageClear = false;
         particle.Stop();
 
+        GameManager.instance.stage += 1;
         //몬스터를 재배치합니다.
         GameManager.instance.NewCreatEnemy();
     }

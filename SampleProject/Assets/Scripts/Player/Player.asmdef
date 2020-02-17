@@ -1,8 +1,7 @@
 {
     "name": "Player",
     "references": [
-        "Common",
-        "spine-unity"
+        "Common"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],

@@ -14,7 +14,7 @@ public class EnemyState : MonoBehaviour
     public float defensivePower = 0.0f;
     public float patrolMoveSpeed = 1.5f;
     public float traceMoveSpeed = 2.0f;
-    
+
     //추가값의 최대값을 설정해줍니다.
     public float maxHp = 100.0f;
     public float maxStrikingPower = 10000.0f;
@@ -26,6 +26,11 @@ public class EnemyState : MonoBehaviour
 
     private void OnEnable()
     {
+        int stage = GameManager.instance.stage;
+
+        maxHp = (stage - 1) * 10 + 100.0f;
+        strikingPower = (stage - 1) * 2 + 10.0f;
+
         hp = maxHp;
         healthBarFilled.fillAmount = 1;
 
@@ -48,7 +53,7 @@ public class EnemyState : MonoBehaviour
     {
         hp -= value;
 
-        if(hp<=0)
+        if (hp <= 0)
         {
             enemyAI.action = EnemyAction.Die;
         }

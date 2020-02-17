@@ -15,7 +15,16 @@ public class GameManager : MonoBehaviour
     public GameObject enemyPrefabs;
     //오브젝트 풀에 저장할 에너미 수
     public List<GameObject> enemyPool = new List<GameObject>();
-   
+
+    //적 캐릭터의 최대 생성 개수
+    public int maxArrow = 10;
+    //적 캐릭터 프리팹
+    public GameObject arrowPrefabs;
+    //오브젝트 풀에 저장할 에너미 수
+    public List<GameObject> arrowPool = new List<GameObject>();
+    //게임 스테이지
+    public int stage;
+
     //싱글톤 접근
     public static GameManager instance
     {
@@ -41,18 +50,56 @@ public class GameManager : MonoBehaviour
         CreatePooling();
         StartCoroutine("CreateEnemy");
         isGameover = false;
+        stage = 1;
     }
-    
+
     //외부에서 새적을 생성하라고 요청하는 함수
     public void NewCreatEnemy()
     {
         StartCoroutine("CreateEnemy");
     }
 
+    public bool NewCrateArrow_Right(Vector2 startPos, Vector2 endPos)
+    {
+        float angle=0.0f;
+
+        for (int i = 0; i < maxArrow; i++)
+        {
+            //비황성화 여부로 사용 가능한 오브젝트인지를 판단
+            if (arrowPool[i].activeSelf == false)
+            {
+                Vector2 offset = new Vector2(endPos.x - startPos.x, endPos.y - startPos.y);
+
+                angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
+
+                if(angle < 0.0f)
+                {
+                    angle = 360 + angle;
+                }
+            
+                arrowPool[i].transform.localRotation = Quaternion.Euler(0.0f, 0.0f, angle);
+                arrowPool[i].transform.position = startPos;
+
+                arrowPool[i].SetActive(true);
+
+                break;
+            }
+        }
+
+        if (angle > 90 && angle < 270)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
     //모든 적이 비활성화 상태인지 확인하는 함수
     public bool EmptyNowEnemy()
     {
-        for(int i =0;i< enemyPool.Count; i++)
+        for (int i = 0; i < enemyPool.Count; i++)
         {
             if (enemyPool[i].activeSelf == true)
                 return false;
@@ -82,8 +129,7 @@ public class GameManager : MonoBehaviour
         yield return null;
     }
 
-    //적 캐릭터를 시작시 생성합니다.
-    //오브젝트 풀에 적을 생성하는 함수
+    //오브젝트 풀에 오브젝트를 생성하는 함수
     public void CreatePooling()
     {
         //총알을 생성해 차일드화할 페이런트 게임오브젝트를 생성
@@ -98,6 +144,17 @@ public class GameManager : MonoBehaviour
             obj.SetActive(false);
             //리스트에 생성한 총알 추가
             enemyPool.Add(obj);
+        }
+
+        //풀링개수만큼 미리 화살을 생성
+        for (int i = 0; i < maxArrow; i++)
+        {
+            var obj = Instantiate<GameObject>(arrowPrefabs, objectPools.transform);
+            obj.name = "Arrow" + i.ToString("00");
+            //비활성화
+            obj.SetActive(false);
+            //리스트에 생성한 총알 추가
+            arrowPool.Add(obj);
         }
     }
 }

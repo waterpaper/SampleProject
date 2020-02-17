@@ -78,6 +78,22 @@ public class CharacterContorller : MonoBehaviour
         {
             // 추적 상태가 아닐시에 접근합니다.
             CheckTrace();
+            
+            if (targetEnemy != null)
+            {
+                /*
+                var t = PathFinderManager.instance.PathFinding(transform.position, targetEnemy.transform.position);
+
+                if(t != null)
+                {
+
+                }
+                else
+                {
+                    _isTraceing = false;
+                }
+                */
+            }
         }
 
 

@@ -6,6 +6,10 @@ public class PlayerDie : MonoBehaviour
 {
     private void OnDisable()
     {
-        GameManager.instance.isGameover = true;
+
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.isGameover = true;
+        }
     }
 }
